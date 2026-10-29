@@ -1,0 +1,5 @@
+{"timestamp":"00:00:01.029","source":"Server","level":"ERROR","message":"(node:73996) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///home/yash/Projects/flex-office/packages/frontend/next.config.js is not specified and it doesn't parse as CommonJS.\nReparsing as ES module because module syntax was detected. This incurs a performance overhead.\nTo eliminate this warning, add \"type\": \"module\" to /home/yash/Projects/flex-office/packages/frontend/package.json.\n(Use `node --trace-warnings ...` to show where the warning was created)"}
+{"timestamp":"00:00:01.423","source":"Server","level":"LOG","message":""}
+{"timestamp":"00:00:09.540","source":"Browser","level":"INFO","message":"Download the React DevTools for a better development experience: https://react.dev/link/react-devtools"}
+{"timestamp":"00:00:11.815","source":"Browser","level":"INFO","message":"Download the React DevTools for a better development experience: https://react.dev/link/react-devtools"}
+{"timestamp":"00:00:14.623","source":"Browser","level":"INFO","message":"Download the React DevTools for a better development experience: https://react.dev/link/react-devtools"}
