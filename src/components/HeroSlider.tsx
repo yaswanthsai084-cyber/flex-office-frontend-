@@ -18,7 +18,7 @@ const slides = [
   },
   {
     src: "/hero/slide-2.jpeg",
-    alt: "Bright open-plan office design with contemporary furniture",
+    alt: "Bright open-plan office design with the contemporary furniture",
   },
   {
     src: "/hero/slide-4.jpg",
