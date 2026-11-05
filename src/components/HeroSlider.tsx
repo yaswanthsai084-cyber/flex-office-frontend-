@@ -13,7 +13,7 @@ const slides = [
     alt: "Contemporary office interior with bright open-plan collaborative areas",
   },
   {
-    src: "/hero/slide-1.avif",
+    src: "/hero/slide-1.jpeg",
     alt: "Modern collaborative office workspace with open seating and natural light",
   },
   {

@@ -27,12 +27,14 @@ const staggerContainer = {
 
 // ===================== Data =====================
 const navLinks = [
-  { label: 'Services', href: '#services' },
-  { label: 'Our Projects', href: '#projects' },
-  { label: 'About', href: '#about' },
-  { label: 'Process', href: '#process' },
-  { label: 'Insights', href: '#insights' },
-  { label: 'Contact', href: '#contact' },
+  { label: 'Dashboard', href: '#dashboard' },
+  { label: 'Desk Booking', href: '#desk-booking' },
+  { label: 'Meeting Rooms', href: '#meeting-rooms' },
+  { label: 'Floors', href: '#floors' },
+  { label: 'Parking', href: '#parking' },
+  { label: 'My Bookings', href: '#my-bookings' },
+  { label: 'Notifications', href: '#notifications' },
+  { label: 'Profile', href: '#profile' },
 ];
 
 const services = [
@@ -183,36 +185,47 @@ function PostCard({ post, index }: { post: typeof posts[0]; index: number }) {
 }
 
 export default function Home() {
-  const [menuOpen, setMenuOpen] = useState(false);
 
   return (
     <main>
       {/* ===================== Header ===================== */}
       <header className="site-header">
         <div className="container header-inner">
-          <a href="#" className="brand">
-            <span className="brand-logo">🏢</span>
-            <span className="brand-name">Office Insight</span>
-          </a>
-          <nav className={`nav${menuOpen ? ' open' : ''}`} id="mainNav">
-            {navLinks.map((link) => (
-              <a key={link.label} href={link.href} onClick={() => setMenuOpen(false)}>{link.label}</a>
-            ))}
-            <div className="header-actions">
-              <button className="btn btn-outline btn-sm auth-btn" onClick={() => (window.location.href = "/signin")}>
-                Sign In
-              </button>
-              <button className="btn btn-primary btn-sm auth-btn" onClick={() => (window.location.href = "/signup")}>
-                Sign Up
-              </button>
-            </div>
-          </nav>
-          <button
-            className="hamburger" id="hamburger" aria-label="Toggle menu"
-            onClick={() => setMenuOpen((v) => !v)}
-          >
-            <span></span><span></span><span></span>
-          </button>
+          <div className="header-container">
+          <div className="header-left">
+            <a href="#" className="brand">
+              <span className="brand-logo">🏢</span>
+              <span className="brand-name">Office Insight</span>
+            </a>
+          </div>
+          <div className="header-actions">
+            <button className="btn btn-outline btn-sm auth-btn" onClick={() => (window.location.href = "/signin")}>
+              Sign In
+            </button>
+            <button className="btn btn-primary btn-sm auth-btn" onClick={() => (window.location.href = "/signup")}>
+              Sign Up
+            </button>
+          </div>
+        </div>
+        <div className="header-center">
+          <div className="search-bar">
+            <input type="text" placeholder="Search..." className="search-input" />
+            <button className="search-btn">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                className="h-5 w-5"
+                viewBox="0 0 20 20"
+                fill="currentColor"
+              >
+                <path
+                  d="M9.5a5.5 5.5 0 1 0 0-11 5.5 5.5 0 0 0 0 11zm-.292 4.293a1 1 0 0 1 1.414-1.414L11 8.414V9.828a1 1 0 0 1-2 0V8.414L4.707 3.707a1 1 0 0 1-1.414-1.414l.707-.707z"
+                />
+              </svg>
+            </button>
+          </div>
+        </div>
+          
+            
         </div>
       </header>
 
@@ -223,8 +236,7 @@ export default function Home() {
           <div className="hero-content">
           <span className="hero-text-placeholder"></span>
         </div>
-        </div>
-      </section>
+        </div>\n        <Feature />\n      </section>
 
       {/* ===================== About ===================== */}
       <section id="about">
@@ -246,8 +258,7 @@ export default function Home() {
               We can help you with office fit outs, refurbishments, office interior design, remodelling, and office design consultancy.
             </motion.p>
           </motion.div>
-        </div>
-      </section>
+        </div>\n        <Feature />\n      </section>
 
       {/* ===================== Projects ===================== */}
       <section className="projects" id="projects">
@@ -268,8 +279,7 @@ export default function Home() {
               <ProjectCard key={project.client} project={project} index={i} />
             ))}
           </motion.div>
-        </div>
-      </section>
+        </div>\n        <Feature />\n      </section>
 
       {/* ===================== Services ===================== */}
       <section className="services" id="services">
@@ -292,8 +302,7 @@ export default function Home() {
               <ServiceCard key={service.title} service={service} index={i} />
             ))}
           </motion.div>
-        </div>
-      </section>
+        </div>\n        <Feature />\n      </section>
 
       {/* ===================== Testimonial ===================== */}
       <section className="testimonial-section">
@@ -324,8 +333,7 @@ export default function Home() {
               </div>
             </motion.div>
           </motion.div>
-        </div>
-      </section>
+        </div>\n        <Feature />\n      </section>
 
       {/* ===================== Process ===================== */}
       <section className="process" id="process">
@@ -360,8 +368,7 @@ export default function Home() {
               View The Process
             </motion.button>
           </motion.div>
-        </div>
-      </section>
+        </div>\n        <Feature />\n      </section>
 
       {/* ===================== Insights ===================== */}
       <section className="insights" id="insights">
@@ -390,8 +397,7 @@ export default function Home() {
           >
             <a href="#" className="view-all-link">View All Insights &rarr;</a>
           </motion.div>
-        </div>
-      </section>
+        </div>\n        <Feature />\n      </section>
 
       {/* ===================== Contact CTA ===================== */}
       <section className="contact-cta" id="contact">
@@ -418,8 +424,7 @@ export default function Home() {
               Request Call Back
             </motion.button>
           </motion.div>
-        </div>
-      </section>
+        </div>\n        <Feature />\n      </section>
 
       {/* ===================== Footer ===================== */}
       <footer className="site-footer">
@@ -499,3 +504,4 @@ export default function Home() {
     </main>
   );
 }
+
