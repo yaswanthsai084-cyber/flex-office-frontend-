@@ -19,14 +19,42 @@ export default function AuthForm({
   const [name, setName] = useState("");
   const [remember, setRemember] = useState(false);
   const [error, setError] = useState("");
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setError("");
 
     if (!email.trim()) return setError("Please enter your email.");
     if (!name.trim() && mode === "signup") return setError("Please enter your name.");
     if (!password) return setError("Please enter your password.");
+
+    setIsSubmitting(true);
+    try {
+      const apiUrl = process.env.NEXT_PUBLIC_API_URL || "http://localhost:5000/api";
+      const response = await fetch(`${apiUrl}/auth/${mode}`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          ...(mode === "signup" ? { name: name.trim() } : {}),
+          email: email.trim(),
+          password,
+        }),
+      });
+      const data = await response.json().catch(() => ({}));
+
+      if (!response.ok) {
+        throw new Error(data.message || "Unable to complete authentication.");
+      }
+
+      localStorage.setItem("flexoffice_token", data.token);
+      localStorage.setItem("flexoffice_user", JSON.stringify(data.user));
+      window.location.href = "/bookings";
+    } catch (submitError) {
+      setError(submitError instanceof Error ? submitError.message : "Unable to connect to the server.");
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -122,10 +150,11 @@ export default function AuthForm({
       <motion.button
         type="submit"
         className="btn auth-btn auth-btn-primary"
+        disabled={isSubmitting}
         whileHover={{ scale: 1.02 }}
         whileTap={{ scale: 0.98 }}
       >
-        {mode === "signin" ? "Sign In" : "Create Account"}
+        {isSubmitting ? "Please wait..." : mode === "signin" ? "Sign In" : "Create Account"}
       </motion.button>
 
       {mode === "signin" && (
