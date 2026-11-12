@@ -17,6 +17,7 @@ export default function AuthForm({
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [name, setName] = useState("");
+  const [accountRole, setAccountRole] = useState<"customer" | "occupant">("customer");
   const [remember, setRemember] = useState(false);
   const [error, setError] = useState("");
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -39,6 +40,7 @@ export default function AuthForm({
           ...(mode === "signup" ? { name: name.trim() } : {}),
           email: email.trim(),
           password,
+          role: accountRole,
         }),
       });
       const data = await response.json().catch(() => ({}));
@@ -49,12 +51,17 @@ export default function AuthForm({
 
       localStorage.setItem("flexoffice_token", data.token);
       localStorage.setItem("flexoffice_user", JSON.stringify(data.user));
-      window.location.href = "/bookings";
+      window.location.href = data.user.role === "occupant" ? "/workspace" : "/bookings";
     } catch (submitError) {
       setError(submitError instanceof Error ? submitError.message : "Unable to connect to the server.");
     } finally {
       setIsSubmitting(false);
     }
+  };
+
+  const switchMode = (nextMode: "signin" | "signup") => {
+    setError("");
+    onModeChange(nextMode);
   };
 
   return (
@@ -83,6 +90,29 @@ export default function AuthForm({
           />
         </motion.div>
       )}
+
+      <motion.div
+        initial={{ opacity: 0, y: 8 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.3, delay: mode === "signup" ? 0.04 : 0 }}
+        className="field"
+      >
+        <label htmlFor="auth-role" className="field-label">
+          {mode === "signup" ? "Choose your role" : "Sign in as"}
+        </label>
+        <select
+          id="auth-role"
+          value={accountRole}
+          onChange={(event) => {
+            const role = event.target.value;
+            if (role === "customer" || role === "occupant") setAccountRole(role);
+          }}
+          className="field-input"
+        >
+          <option value="customer">Customer</option>
+          <option value="occupant">Occupant</option>
+        </select>
+      </motion.div>
 
       <motion.div
         initial={{ opacity: 0, y: 8 }}
@@ -160,7 +190,7 @@ export default function AuthForm({
       {mode === "signin" && (
         <div className="auth-too">
           <span className="icon">+</span> New to Office Insight?{" "}
-          <button type="button" className="auth-text-link" onClick={() => onModeChange("signup")}>
+          <button type="button" className="auth-text-link" onClick={() => switchMode("signup")}>
             Sign Up
           </button>
         </div>
@@ -169,7 +199,7 @@ export default function AuthForm({
       {mode === "signup" && (
         <div className="auth-too">
           <span className="icon">+</span> Already have an account?{" "}
-          <button type="button" className="auth-text-link" onClick={() => onModeChange("signin")}>
+          <button type="button" className="auth-text-link" onClick={() => switchMode("signin")}>
             Sign In
           </button>
         </div>

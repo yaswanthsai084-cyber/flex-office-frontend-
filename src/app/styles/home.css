@@ -86,3 +86,42 @@ em { font-family:Georgia,serif; font-weight:400; }
 .flex-home .hero { align-items:flex-start; }
 .flex-home .hero-content { padding-top:155px; text-align:left; }
 .flex-home .hero-content > div { margin-left:0; margin-right:auto; }
+.flex-home .brand { font-size:21px; }
+.flex-home .brand-mark { width:24px; height:24px; }
+.flex-home .brand-mark span { width:8px; height:8px; }
+.flex-home .main-nav { gap:28px; }
+.flex-home .main-nav a,
+.flex-home .login-link { font-size:12px; }
+.flex-home .btn { gap:10px; padding:12px 18px; font-size:12px; }
+.flex-home .btn-small { padding:9px 14px; }
+.flex-home .hero h1 { font-size:clamp(48px,6.5vw,86px); }
+.flex-home .hero-copy { max-width:440px; font-size:15px; margin:23px 0 28px; }
+.flex-home .text-link { gap:12px; font-size:12px; }
+.flex-home .hero-bottom { font-size:9px; }
+.flex-home .intro h2,
+.flex-home .solutions h2,
+.flex-home .contact-cta h2 { font-size:clamp(34px,4.2vw,58px); }
+.flex-home .lead { font-size:17px; }
+.flex-home .benefit-number,
+.flex-home .card-index { font-size:11px; }
+.flex-home .benefit h3 { font-size:11px; }
+.flex-home .benefit p,
+.flex-home .solution-card p { font-size:14px; }
+.flex-home .section-intro { font-size:14px; }
+.flex-home .solution-icon { font-size:32px; }
+.flex-home .solution-card h3 { font-size:22px; }
+.flex-home .card-link { font-size:11px; }
+.flex-home .quote { font-size:clamp(24px,3vw,40px); }
+.flex-home .quote-mark { font-size:100px; }
+.flex-home .quote-author strong,
+.flex-home .quote-author span:last-child { font-size:11px; }
+.flex-home .footer-links strong { font-size:11px; }
+.flex-home .footer-links a { font-size:12px; }
+.flex-home .footer-bottom { font-size:10px; }
+@media(max-width:800px) {
+  .flex-home .hero h1 { font-size:clamp(44px,9vw,68px); }
+  .flex-home .intro h2,
+  .flex-home .solutions h2,
+  .flex-home .contact-cta h2 { font-size:clamp(32px,7vw,48px); }
+  .flex-home .quote { font-size:clamp(24px,5.5vw,36px); }
+}

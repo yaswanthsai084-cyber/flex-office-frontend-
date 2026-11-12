@@ -78,7 +78,11 @@ export default function BookingWorkspace({ kind = "desks" }: { kind?: BookingKin
     if (!storedUser) return;
 
     try {
-      const user = JSON.parse(storedUser) as { name?: string; building?: string };
+      const user = JSON.parse(storedUser) as { name?: string; building?: string; role?: string };
+      if (user.role === "occupant") {
+        window.location.replace("/workspace");
+        return;
+      }
       setCurrentUser({
         name: user.name?.trim() || "User",
         building: user.building?.trim() || "Your workspace",
@@ -123,7 +127,6 @@ export default function BookingWorkspace({ kind = "desks" }: { kind?: BookingKin
     </main>
   );
 }
-
 
 
 
